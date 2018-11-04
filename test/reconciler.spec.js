@@ -318,4 +318,34 @@ Z = 'Z';
     assert.equal(moves.length, 9);
     assert.deepEqual(moves.result, target);
   });
+
+  it.only('removes and replaces elements', () => {
+
+    // given
+    const source = [
+      0,
+      'b8d30f122533f24325a819f4e81530a8',
+      '4b712814ec4627b0e57bc56e182deda3',
+      '64bc77986ebd39430c617953e817270e',
+      '49847c33dc60394b66aeb18a4b054cf8',
+      'a7bc18575df5c1e6a7f98687a99ea4a9',
+      '30e46d39b62e059866d8f2ec5a19a8f6',
+      101,
+    ];
+    const target = [
+      0,
+      'b8d30f122533f24325a819f4e81530a8',
+      '64bc77986ebd39430c617953e817270e',
+      '49847c33dc60394b66aeb18a4b054cf8',
+      'a7bc18575df5c1e6a7f98687a99ea4a9',
+      '30e46d39b62e059866d8f2ec5a19a8f6',
+      100,
+    ];
+
+    // when
+    const moves = Reconciler.calculateMoves(source, target);
+
+    assert.deepEqual(moves.result, target);
+    assert.equal(moves.length, 5);
+  });
 });
